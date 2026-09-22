@@ -1,0 +1,25 @@
+[project]
+name = "granite-agent-workshop"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "ibm-granite-community-utils",
+    "jupyterlab>=4.6.3",
+    "langchain-chroma>=1.1.0",
+    "langchain-huggingface>=1.2.2",
+    "langchain-ollama>=1.1.0",
+    "langchain-replicate",
+    "langfuse>=4.15.4",
+    "langgraph>=1.2.11",
+    "matplotlib>=3.11.2",
+    "pandas>=3.0.6",
+    "rich>=15.0.0",
+    "rouge-score>=0.1.2",
+    "sentence-transformers>=6.1.0",
+]
+
+[tool.uv.sources]
+langchain-replicate = { git = "https://github.com/ibm-granite-community/langchain-replicate.git" }
+ibm-granite-community-utils = { git = "https://github.com/ibm-granite-community/utils.git" }

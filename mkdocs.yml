@@ -1,5 +1,5 @@
 # Project information
-site_name: Building Agents with Granite Workshop
+site_name: "Building Efficient AI Agents with IBM Granite"
 site_url: https://ibm-granite-community.github.io/granite-agent-workshop
 site_author: IBM Research
 
@@ -12,15 +12,19 @@ edit_uri: edit/main/docs
 nav:
   - Welcome:
     - About the workshop: README.md
+    - About Granite: about-granite.md
   - Workshop:
-    - Lab 0. Pre-work: pre-work/README.md
-    - Lab 1. Function Calling Agent: lab-1/README.md
-    - Lab 2. Plan-and-Solve Agent: lab-2/README.md
-    - Lab 3. Route-and-Solve Agent: lab-3/README.md
-    - Lab 4. ToolRAG Agent: lab-4/README.md
-    - Lab 5. ReAct Agent: lab-5/README.md
+    - Pre-work: pre-work/README.md
+    - 00. Getting Started: part-00-getting-started/README.md
+    - 01. Building Agents:
+      - Function Calling: part-01-building-agents/function-calling.md
+      - Agent Patterns: part-01-building-agents/agent-patterns.md
+    - 03. Productionizing Agents:
+      - Observability: part-03-productionizing-agents/observability.md
   - References:
     - Building Agents with Granite - From Prototype to Production: https://github.com/ibm-granite-community/granite-agent-cookbook/blob/main/building_agents.md
+    - Testing agents: https://github.com/ibm-granite-community/granite-agent-cookbook/blob/main/testing_agents.md
+    - CI/CD for agentic development: https://github.com/ibm-granite-community/granite-agent-cookbook/blob/main/cicd_agent-dev-blog.md
 
 
 

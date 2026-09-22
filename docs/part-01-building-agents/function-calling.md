@@ -1,8 +1,8 @@
 ---
-title: Lab 1. Function Calling Agent
-description: Function Calling Agent
+title: 01. Function Calling
+description: The tool loop by hand, then through a framework
 logo: images/ibm-blue-background.png
-notebook: notebooks/Function_Calling_Agent.ipynb
+notebook: notebooks/01_function_calling.ipynb
 ---
 
 # Function Calling Agent
@@ -38,9 +38,11 @@ FC Agent Flow Example
 A common misconception is that the LLM underlying the Agent is able to execute tools, when in fact the LLM is only selecting a tool and the tool parameters to execute based on the query. The tool execution is performed by the program supplementing the LLM invocations.
 ///
 
+This lab has you write that tool-execution loop **by hand** first -- so you see exactly what the model returns and what your own code has to do with it -- before rebuilding the same agent with LangGraph, and finally with LangChain's `create_agent`. The model, tools and agent you build here (`get_llm()`, `get_stock_price`, `get_current_weather`, `build_agent()`) are packaged in `src/granite_agent/` so every later notebook in this workshop reuses them instead of redefining them.
+
 ## Prerequisites
 
-This lab is a [Jupyter notebook](https://jupyter.org/). Please follow the instructions in [pre-work](../pre-work/README.md) to run the lab.
+This lab is a [Jupyter notebook](https://jupyter.org/). Please follow the instructions in [pre-work](../pre-work/README.md) to run the lab. If this is your first notebook, start with [00. Access the Model](../part-00-getting-started/README.md) instead.
 
 ## Lab
 

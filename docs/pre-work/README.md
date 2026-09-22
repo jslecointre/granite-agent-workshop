@@ -1,6 +1,6 @@
 ---
 title: Lab 0. Pre-work
-description: Preparation for the Building Agents with Granite Workshop
+description: Preparation for Building Efficient AI Agents with IBM Granite
 logo: images/ibm-blue-background.png
 ---
 
@@ -112,6 +112,11 @@ Running Ollama locally on your computer requires the following steps:
 
     ```shell
     ollama pull granite4.2:3b
+    ```
+
+    `granite4.2:3b` is enough for most of the workshop. The Plan-and-Solve section of the [Agent Patterns](../part-01-building-agents/agent-patterns.md) lab asks for the larger `granite4.2:8b` model; if you haven't pulled it, that section automatically falls back to Replicate instead (see [Serving the Granite AI Models](#serving-the-granite-ai-models-for-locally-run-notebooks) above). Pull it too if you'd rather run everything fully locally:
+
+    ```shell
     ollama pull granite4.2:8b
     ```
 
@@ -201,3 +206,35 @@ The labs require Granite models to be served by an AI model runtime so that the 
 1. Add your Replicate API Token to the Colab Secrets manager to securely store it. Open [Google Colab](https://colab.research.google.com) and click on the 🔑 Secrets tab in the left panel. Click "Add new secret" and enter `REPLICATE_API_TOKEN` into the name field and paste your token into the value field. Toggle the button on the left to allow notebook access to the secret.
 
 ![Colab Secrets](../images/colab-secrets.png)
+
+## Setting up Langfuse (for the Observability lab)
+
+The [Observability](../part-03-productionizing-agents/observability.md) lab needs a [Langfuse](https://langfuse.com) project. You don't need this for the earlier labs -- come back to this section when you get there.
+
+/// tab | Self-hosted (local)
+
+Run Langfuse locally with Docker Compose, following the [deployment guide](https://langfuse.com/self-hosting/deployment/docker-compose):
+
+```shell
+git clone --depth 1 https://github.com/langfuse/langfuse.git
+cd langfuse
+docker compose up -d
+```
+
+Langfuse will be available at <http://localhost:3000>.
+
+///
+
+/// tab | Cloud
+
+If you'd rather not run Docker, [create a free account](https://us.cloud.langfuse.com/) on Langfuse Cloud instead. This is also the option to use from Colab, which can't reach `localhost`.
+
+///
+
+Once you have access, sign up, create a project, then go to **Settings → API Keys** and generate a new key pair. Copy the **Public Key**, **Secret Key**, and **Host URL** into your `.env` file (the secret key is shown only once):
+
+```dotenv
+LANGFUSE_SECRET_KEY=sk-lf-xxxxx
+LANGFUSE_PUBLIC_KEY=pk-lf-xxxxx
+LANGFUSE_HOST=http://localhost:3000
+```
