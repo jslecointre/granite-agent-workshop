@@ -5,8 +5,8 @@ site_author: IBM Research
 
 # Repository
 repo_name: granite-agent-workshop
-repo_url: https://github.com/ibm-granite-community/granite-agent-workshop
-edit_uri: edit/main/docs
+repo_url: https://github.com/jslecointre/granite-agent-workshop
+edit_uri: edit/tx-26-lab/docs
 
 # Navigation
 nav:
@@ -15,12 +15,17 @@ nav:
     - About Granite: about-granite.md
   - Workshop:
     - Pre-work: pre-work/README.md
-    - 00. Getting Started: part-00-getting-started/README.md
-    - 01. Building Agents:
-      - Function Calling: part-01-building-agents/function-calling.md
-      - Agent Patterns: part-01-building-agents/agent-patterns.md
-    - 03. Productionizing Agents:
-      - Observability: part-03-productionizing-agents/observability.md
+    - 1. Access the Model: part-01-access-the-model/README.md
+    - 2. Building Agents:
+      - Overview: part-02-building-agents/README.md
+      - 2.1 Function Calling Agent: part-02-building-agents/function-calling.md
+      - 2.2 Plan-and-Solve Agent: part-02-building-agents/plan-and-solve.md
+      - 2.3 Route-and-Solve Agent: part-02-building-agents/route-and-solve.md
+      - 2.4 ToolRAG Agent: part-02-building-agents/toolrag.md
+      - 2.5 ReAct Agent: part-02-building-agents/react.md
+    - 3. Testing Agents: part-03-testing-agents/README.md
+    - 4. Observing Agents: part-04-observing-agents/README.md
+    - 5. Packaging Agents: part-05-packaging-agents/README.md
   - References:
     - Building Agents with Granite - From Prototype to Production: https://github.com/ibm-granite-community/granite-agent-cookbook/blob/main/building_agents.md
     - Testing agents: https://github.com/ibm-granite-community/granite-agent-cookbook/blob/main/testing_agents.md
@@ -76,7 +81,8 @@ extra:
       link: https://www.youtube.com/user/developerworks
     - icon: fontawesome/brands/dev
       link: https://dev.to/ibmdeveloper
-  colab_url: https://colab.research.google.com/github/ibm-granite-community/granite-agent-workshop
+  colab_url: https://colab.research.google.com/github/jslecointre/granite-agent-workshop
+  repo_branch: tx-26-lab
 
 # Extensions
 markdown_extensions:

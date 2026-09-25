@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "grandalf>=0.8",
     "ibm-granite-community-utils",
     "jupyterlab>=4.6.3",
     "langchain-chroma>=1.1.0",

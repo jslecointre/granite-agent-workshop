@@ -6,11 +6,27 @@ logo: images/ibm-blue-background.png
 
 # Pre-work
 
-The labs in the workshop are [Jupyter notebooks](https://jupyter.org/). The notebooks can be run on your computer or remotely on the [Google Colab](https://colab.research.google.com) service.
+The labs in the workshop are [Jupyter notebooks](https://jupyter.org/). You can run them on the TechXchange lab workstation, on your own computer, or remotely on the [Google Colab](https://colab.research.google.com) service.
 
-# Running the Notebooks
+## At the TechXchange lab
 
-Follow the instructions corresponding to how you want to run the notebooks:
+If you are in the Lab 1538 session, your workstation is already set up: the Python environment, the notebooks and access to the Granite models are in place, so **you can skip the rest of this page** apart from the Langfuse step below.
+
+1. Keep this website open in a browser tab for the whole session.
+2. Open a terminal and start JupyterLab from the workshop directory:
+
+    ```shell
+    cd ~/granite-agent-workshop-tx2026
+    uv run jupyter-lab
+    ```
+
+3. In JupyterLab, open the `notebooks` folder. The notebooks are numbered in the order you will run them.
+4. Run the first cell of any notebook to confirm the kernel starts. If it fails, raise your hand now rather than during the first part.
+5. Before the [Observing Agents](../part-04-observing-agents/README.md) lab, add your Langfuse keys to `.env` as described in [Setting up Langfuse](#setting-up-langfuse-for-the-observing-agents-lab). Langfuse is already running on the workstation at <http://localhost:3000>.
+
+## Running the Notebooks
+
+If you are working on your own, follow the instructions corresponding to how you want to run the notebooks:
 
 - [Locally on your computer](#running-the-notebooks-locally) OR
 - [Remotely on the Google Colab service](#running-the-notebooks-remotely-colab)
@@ -56,10 +72,10 @@ uv python update-shell
 
 ### Clone the Workshop Repository
 
-Clone the workshop repo and cd into the repo directory.
+Clone the workshop repo on the `tx-26-lab` branch and cd into the repo directory.
 
 ```shell
-git clone https://github.com/ibm-granite-community/granite-agent-workshop.git
+git clone --branch tx-26-lab https://github.com/jslecointre/granite-agent-workshop.git
 cd granite-agent-workshop
 ```
 
@@ -114,7 +130,7 @@ Running Ollama locally on your computer requires the following steps:
     ollama pull granite4.2:3b
     ```
 
-    `granite4.2:3b` is enough for most of the workshop. The Plan-and-Solve section of the [Agent Patterns](../part-01-building-agents/agent-patterns.md) lab asks for the larger `granite4.2:8b` model; if you haven't pulled it, that section automatically falls back to Replicate instead (see [Serving the Granite AI Models](#serving-the-granite-ai-models-for-locally-run-notebooks) above). Pull it too if you'd rather run everything fully locally:
+    `granite4.2:3b` is enough for most of the workshop. The [Plan-and-Solve](../part-02-building-agents/plan-and-solve.md) lab asks for the larger `granite4.2:8b` model; if you haven't pulled it, that lab automatically falls back to Replicate instead (see [Serving the Granite AI Models](#serving-the-granite-ai-models-for-locally-run-notebooks) above). Pull it too if you'd rather run everything fully locally:
 
     ```shell
     ollama pull granite4.2:8b
@@ -207,9 +223,15 @@ The labs require Granite models to be served by an AI model runtime so that the 
 
 ![Colab Secrets](../images/colab-secrets.png)
 
-## Setting up Langfuse (for the Observability lab)
+## Setting up Langfuse (for the Observing Agents lab)
 
-The [Observability](../part-03-productionizing-agents/observability.md) lab needs a [Langfuse](https://langfuse.com) project. You don't need this for the earlier labs -- come back to this section when you get there.
+The [Observing Agents](../part-04-observing-agents/README.md) lab needs a [Langfuse](https://langfuse.com) project. You don't need this for the earlier labs -- come back to this section when you get there.
+
+/// tab | Lab workstation
+
+Langfuse is already running on the workstation at <http://localhost:3000>. There is nothing to install.
+
+///
 
 /// tab | Self-hosted (local)
 
@@ -231,7 +253,7 @@ If you'd rather not run Docker, [create a free account](https://us.cloud.langfus
 
 ///
 
-Once you have access, sign up, create a project, then go to **Settings → API Keys** and generate a new key pair. Copy the **Public Key**, **Secret Key**, and **Host URL** into your `.env` file (the secret key is shown only once):
+Once you have access, sign up, create an organization and a project, then go to **Settings → API Keys** and generate a new key pair. Copy the **Public Key**, **Secret Key**, and **Host URL** into the `.env` file in the workshop directory. If there is no `.env` file yet, copy `.env.example` to `.env` first. The secret key is shown only once, so copy it before closing the dialog.
 
 ```dotenv
 LANGFUSE_SECRET_KEY=sk-lf-xxxxx

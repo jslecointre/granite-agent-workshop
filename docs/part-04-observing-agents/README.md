@@ -1,15 +1,15 @@
 ---
-title: 04. Observability
+title: 4. Observing Agents
 description: Instrument an agent and read a trace with Langfuse
 logo: images/ibm-blue-background.png
-notebook: notebooks/04_observability.ipynb
+notebook: notebooks/03_observability.ipynb
 ---
 
 # Agent Observability with Langfuse
 
 Once an agent leaves your notebook, print statements stop being an option. Unlike traditional deterministic software, agentic AI systems produce non-deterministic, multi-step behaviors that shift the operational question from "is it up?" to "is it right?" Observability -- capturing rich telemetry and traceability -- is what lets you answer that question in production.
 
-This lab reuses the exact agent from [01. Function Calling](../part-01-building-agents/function-calling.md) (`get_llm()`, `get_stock_price`, `get_current_weather`, `build_agent()`) and instruments it with [Langfuse](https://langfuse.com) tracing. You will:
+This lab takes the agent from [2.1 Function Calling Agent](../part-02-building-agents/function-calling.md) (`get_llm()`, `get_stock_price`, `get_current_weather`, `build_agent()`) and instruments it with [Langfuse](https://langfuse.com) tracing. You will:
 
 1. Instrument the agent with Langfuse's callback handler and capture a trace, with no code changes to the agent itself.
 2. Review the trace in the Langfuse UI: LLM generations, tool calls, token counts, latency and cost.
@@ -37,17 +37,33 @@ Once you have access to a Langfuse project:
 
 ## Prerequisites
 
-This lab is a [Jupyter notebook](https://jupyter.org/). Please follow the instructions in [pre-work](../pre-work/README.md) to run the lab, and complete [01. Function Calling](../part-01-building-agents/function-calling.md) first -- this lab reuses its model, tools and agent rather than redefining them.
+This lab is a [Jupyter notebook](https://jupyter.org/). At the TechXchange lab, your workstation is already set up: there is nothing to install. To run it on your own machine or in Colab, complete the [pre-work](../pre-work/README.md) first. The notebook is self-contained, but it helps to complete [2.1 Function Calling Agent](../part-02-building-agents/function-calling.md) first, because this lab instruments the same agent.
 
 ## Lab
 
-[![Agent Observability](https://badgen.net/badge/icon/github?icon=github&label=View%20on "View on GitHub")]({{ config.repo_url }}/blob/{{ git.commit }}/{{ notebook }}){:target="_blank"}
-[![Agent Observability](https://colab.research.google.com/assets/colab-badge.svg "Open In Colab")]({{ extra.colab_url }}/blob/{{ git.commit }}/{{ notebook }}){:target="_blank"}
+[![Agent Observability](https://badgen.net/badge/icon/github?icon=github&label=View%20on "View on GitHub")]({{ config.repo_url }}/blob/{{ extra.repo_branch }}/{{ notebook }}){:target="_blank"}
+[![Agent Observability](https://colab.research.google.com/assets/colab-badge.svg "Open In Colab")]({{ extra.colab_url }}/blob/{{ extra.repo_branch }}/{{ notebook }}){:target="_blank"}
 
-To run the notebook from your command line in Jupyter using the active virtual environment from the [pre-work](../pre-work/README.md#install-jupyter), run:
+Open the notebook in the way that matches where you are working:
+
+/// tab | Lab workstation
+
+In JupyterLab, open `{{ notebook }}` from the file browser. If JupyterLab isn't running yet, see [At the TechXchange lab](../pre-work/README.md#at-the-techxchange-lab).
+
+///
+
+/// tab | Colab
+
+Click **Open in Colab** above. The first code cell installs everything the notebook needs. Colab needs a Replicate API token: see [Running the Notebooks Remotely (Colab)](../pre-work/README.md#running-the-notebooks-remotely-colab).
+
+///
+
+/// tab | Your own machine
+
+From the `granite-agent-workshop` folder you cloned in the [pre-work](../pre-work/README.md#clone-the-workshop-repository), with its virtual environment active, run:
 
 ```shell
 jupyter notebook {{ notebook }}
 ```
 
-The path of the notebook file above is relative to the `granite-agent-workshop` folder from the git clone in the [pre-work](../pre-work/README.md#clone-the-workshop-repository).
+///

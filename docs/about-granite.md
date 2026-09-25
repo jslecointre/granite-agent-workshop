@@ -12,7 +12,7 @@ logo: images/ibm-blue-background.png
 
 ## Granite 4.2
 
-The workshop runs on the [Granite 4.2](https://huggingface.co/collections/ibm-granite/granite-42-language-models) generation, released by IBM in August 2026 in three sizes -- `3b`, `8b`, and `30b` parameters. All three are dense, all-attention transformer models: unlike Granite 4.0's hybrid Mamba-2/transformer Mixture-of-Experts design, Granite 4.1 and 4.2 use every parameter on every token, which keeps their behavior straightforward to reason about while you're building an agent loop by hand in [Lab 01](part-01-building-agents/function-calling.md).
+The workshop runs on the [Granite 4.2](https://huggingface.co/collections/ibm-granite/granite-42-language-models) generation, released by IBM in August 2026 in three sizes -- `3b`, `8b`, and `30b` parameters. All three are dense, all-attention transformer models: unlike Granite 4.0's hybrid Mamba-2/transformer Mixture-of-Experts design, Granite 4.1 and 4.2 use every parameter on every token, which keeps their behavior straightforward to reason about while you're building your first agent in [Lab 2.1](part-02-building-agents/function-calling.md).
 
 Granite 4.2 is IBM's first generation to combine native reasoning with tool calling in one model. Each model can emit a step-by-step chain of thought inside `<think>...</think>` tags before its final answer, with three selectable modes:
 
@@ -32,7 +32,7 @@ All three natively support a 128K-token context window, and the 30B model has a 
 
 ## Which model this workshop uses
 
-`src/granite_agent/model.py` picks the model for you, so every notebook calls the same `get_llm()` function instead of hardcoding a model name:
+Every notebook defines the same `get_llm()` helper, which picks the model for you instead of hardcoding a model name:
 
 - **Ollama (local, default):** `granite4.2:3b`, overridable with the `GRANITE_MODEL` environment variable.
 - **Replicate (hosted fallback):** `ibm-granite/granite-4.2-8b`, overridable with the `REPLICATE_MODEL` environment variable.
