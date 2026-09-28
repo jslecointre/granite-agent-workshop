@@ -55,7 +55,9 @@ Testing the trajectory separately from the response matters. An agent can give a
 
 - every tool call (`ToolCall(tool_name, tool_parameters)`) taken from the AI messages,
 - the final text response (the last AI message with no tool calls),
-- the wall-clock latency, and a rough token estimate (characters ÷ 4).
+- the wall-clock latency, and the input and output tokens the model reports for every call it makes.
+
+It also traces every run in Langfuse under the run name `TDD`, and keeps the `trace_id`, so you can open the trace of any failing test. The turns of a multi-turn test share one Langfuse session.
 
 The runner is the only piece that knows about LangGraph. The test cases and the checks are plain data and functions, so you can reuse them for a different agent architecture.
 
@@ -66,15 +68,17 @@ Each test case is a dictionary holding the input and the expected outcome:
 ```python
 {
     "name": "stock_price_query",
-    "input": "What were the IBM stock prices on September 5, 2025?",
+    "input": "What were the IBM stock prices on September 10, 2026?",
     "expected_tool_calls": [
-        {"tool_name": "get_stock_price", "tool_parameters": {"ticker": "IBM", "date": "2025-09-05"}}
+        {"tool_name": "get_stock_price", "tool_parameters": {"ticker": "IBM", "date": "2026-09-10"}}
     ],
-    "expected_response_contains": "IBM"
+    "expected_response_contains": ["IBM", "245.45"]
 }
 ```
 
-This case tests more than tool selection. The agent must also **extract and normalize** the arguments: turn "September 5, 2025" into the `YYYY-MM-DD` format that the tool's docstring asks for.
+This case tests more than tool selection. The agent must also **extract and normalize** the arguments: turn "September 10, 2026" into the `YYYY-MM-DD` format that the tool's docstring asks for.
+
+The tests run against the tools' fixed demonstration values rather than the live APIs, so the expected results never change. That lets the response check look for the value the tool returned (`245.45`), not only for a word the question already contains.
 
 The notebook covers each tool with two variations (a different city, a different ticker) so a pass isn't just the model memorizing one prompt.
 
@@ -82,6 +86,8 @@ The notebook covers each tool with two variations (a different city, a different
 
 - **Single-turn tests** send one question and check one trajectory and one response. They cover the basic functionality of each tool.
 - **Multi-turn tests** send a sequence of questions and check every turn. They cover how real users talk: switching from weather to stocks halfway through, or asking a follow-up such as "How about in Tokyo?" that only makes sense given the previous turn.
+
+A compiled graph doesn't remember earlier calls on its own. For multi-turn tests, the notebook builds the agent with a **checkpointer** and sends every turn of a test with the same `thread_id`, so each turn sees the conversation so far. Without it, a follow-up like "What about AAPL on the same date?" can't be answered, and a passing "How about in Tokyo?" only shows that the model guessed well.
 
 ### Summary metrics
 
@@ -92,6 +98,8 @@ After the runs, the notebook reduces the results to a few numbers you can track 
 | **Pass rate** | Share of tests (or turns) where *both* the trajectory and the response pass: the main correctness signal |
 | **Average latency** | How long users wait. Watch for regressions after a model or prompt change |
 | **Average tokens** | A proxy for cost. Check that any quality gain is worth the extra tokens |
+
+The notebook also stores both test sets as **Langfuse datasets** (`tdd-single-turn` and `tdd-multi-turn`), and runs them as **Langfuse experiments**, as introduced in [3. Observing Agents](../part-03-observing-agents/README.md): the trajectory and response checks, the latency and the tokens become per-test scores, and the pass rate a score for the whole run. Each run is stored, so you can compare two models or two prompts side by side.
 
 Latency and tokens are measured here as side information. [4.2 Non-Functional Testing](non-functional-testing.md) treats them as first-class test targets.
 
@@ -135,6 +143,10 @@ This lab is a [Jupyter notebook](https://jupyter.org/). At the workshop, your wo
 This notebook calls Granite on [Replicate](https://replicate.com), so it needs `REPLICATE_API_TOKEN` in your `.env` file (or Colab secrets). See [Running the Notebooks Remotely (Colab)](../pre-work/README.md#running-the-notebooks-remotely-colab).
 ///
 
+/// note | Langfuse keys
+The first notebook traces its test runs and runs an experiment in Langfuse, so it needs the same `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY` and `LANGFUSE_HOST` as [3. Observing Agents](../part-03-observing-agents/README.md).
+///
+
 ## Lab
 
 ### Notebook 1: Agent Evaluation (TDD)
@@ -170,11 +182,11 @@ This notebook walks through seven steps:
 
 1. Define the data structures and the evaluation helpers.
 2. Wrap the agent in a test runner.
-3. Define the single-turn test set.
+3. Define the single-turn and multi-turn evaluation datasets, and store them as Langfuse datasets.
 4. Run the single-turn tests.
-5. Define the multi-turn tests.
-6. Run the multi-turn tests.
-7. Compute the summary metrics.
+5. Run the multi-turn tests.
+6. Compute the summary metrics.
+7. Run both datasets as Langfuse experiments, with the checks recorded as scores.
 
 ### Notebook 2: LLM as a Judge
 
