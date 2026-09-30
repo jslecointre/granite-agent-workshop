@@ -14,7 +14,7 @@ nav:
     - About the workshop: README.md
     - About Granite: about-granite.md
   - Workshop:
-    - Pre-work: pre-work/README.md
+    - Getting Started: getting-started/README.md
     - 1. Access the Model: part-01-access-the-model/README.md
     - 2. Building Agents:
       - Overview: part-02-building-agents/README.md
@@ -37,6 +37,10 @@ nav:
     - CI/CD for agentic development: https://github.com/ibm-granite-community/granite-agent-cookbook/blob/main/cicd_agent-dev-blog.md
 
 
+
+# Open content links in a new tab
+extra_javascript:
+  - javascripts/new-tab.js
 
 ## DO NOT CHANGE BELOW THIS LINE
 

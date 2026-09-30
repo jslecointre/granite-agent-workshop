@@ -137,14 +137,14 @@ The two approaches combine well: assert the trajectory exactly, then require a m
 
 ## Prerequisites
 
-This lab is a [Jupyter notebook](https://jupyter.org/). At the workshop, your workstation is already set up: there is nothing to install. To run it on your own machine or in Colab, complete the [pre-work](../pre-work/README.md) first. The notebook is self-contained, but it helps to complete [2.1 Function Calling Agent](../part-02-building-agents/function-calling.md) first, because this lab tests the same agent.
+This lab is a [Jupyter notebook](https://jupyter.org/). At the workshop, your workstation is already set up: there is nothing to install. To run it on your own machine or in Colab, complete [Getting Started](../getting-started/README.md) first. The notebook is self-contained, but it helps to complete [2.1 Function Calling Agent](../part-02-building-agents/function-calling.md) first, because this lab tests the same agent.
 
 /// note | Replicate token required
-This notebook calls Granite on [Replicate](https://replicate.com), so it needs `REPLICATE_API_TOKEN` in your `.env` file (or Colab secrets). See [Running the Notebooks Remotely (Colab)](../pre-work/README.md#running-the-notebooks-remotely-colab).
+This notebook calls Granite on [Replicate](https://replicate.com), so it needs `REPLICATE_API_TOKEN` in your `.env` file (or Colab secrets). See [Setting up Replicate](../part-01-access-the-model/README.md#setting-up-replicate).
 ///
 
 /// note | Langfuse keys
-The first notebook traces its test runs and runs an experiment in Langfuse, so it needs the same `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY` and `LANGFUSE_HOST` as [3. Observing Agents](../part-03-observing-agents/README.md).
+The first notebook traces its test runs and runs an experiment in Langfuse, so it needs the same `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY` and `LANGFUSE_HOST` as [3. Observing Agents](../part-03-observing-agents/README.md): see [Setting up Langfuse](../part-03-observing-agents/README.md#setting-up-langfuse).
 ///
 
 ## Lab
@@ -158,19 +158,19 @@ Open the notebook in the way that matches where you are working:
 
 /// tab | Lab workstation
 
-In JupyterLab, open `{{ notebook }}` from the file browser. If JupyterLab isn't running yet, see [At the workshop](../pre-work/README.md#at-the-workshop).
+In the JupyterLab file browser, open `granite-agent-workshop/{{ notebook }}`. If JupyterLab isn't running yet, see [Getting Started](../getting-started/README.md#open-jupyterlab).
 
 ///
 
 /// tab | Colab
 
-Click **Open in Colab** above. The first code cell installs everything the notebook needs. Colab needs a Replicate API token: see [Running the Notebooks Remotely (Colab)](../pre-work/README.md#running-the-notebooks-remotely-colab).
+Click **Open in Colab** above. The first code cell installs everything the notebook needs. Colab needs a Replicate API token: see [Setting up Replicate](../part-01-access-the-model/README.md#setting-up-replicate).
 
 ///
 
 /// tab | Your own machine
 
-From the `granite-agent-workshop` folder you cloned in the [pre-work](../pre-work/README.md#clone-the-workshop-repository), with its virtual environment active, run:
+From the `granite-agent-workshop` folder you cloned in [Getting Started](../getting-started/README.md), with its virtual environment active, run:
 
 ```shell
 jupyter notebook {{ notebook }}

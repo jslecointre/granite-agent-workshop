@@ -17,7 +17,7 @@ In short: the model provides judgment, tools provide actions, skills provide kno
 You will work through recipes from the [Granite Agent Cookbook](https://github.com/ibm-granite-community/granite-agent-cookbook) as Jupyter notebooks, on the lab workstation, on your own machine, or in Google Colab. The workshop follows the [agent lifecycle](https://www.ibm.com/think/topics/agent-lifecycle-management): you **build** agents, choosing the architecture (Function Calling, Plan-and-Solve, Route-and-Solve, ToolRAG or ReAct) that is worth its latency and token cost; **observe** them with Langfuse so every model call and tool call is traced; **test and evaluate** both their trajectories and their final answers; and **operationalize** them by packaging an agent so other applications can call it.
 
 /// tip | Getting started at the workshop
-Your workstation is ready: nothing needs to be installed. Follow the five steps in [At the workshop](pre-work/README.md#at-the-workshop), then start with [1. Access the Model](part-01-access-the-model/README.md).
+Your workstation is ready: nothing needs to be installed. Complete [Getting Started](getting-started/README.md), then start with [1. Access the Model](part-01-access-the-model/README.md).
 ///
 
 New to Granite? See [About Granite](about-granite.md) for a primer on the model family and the Granite 4.2 models this workshop runs on.
@@ -61,7 +61,7 @@ There is deliberately more material here than most people finish in the 90-minut
 
 | Part | Lab | Description | Status |
 | :--- | :--- | :--- | :--- |
-| Pre-work | [Pre-work](pre-work/README.md) | Set up your environment | ✅ |
+| Getting Started | [Getting Started](getting-started/README.md) | Set up the repository and JupyterLab | ✅ |
 | Access the Model | [1. Access the Model](part-01-access-the-model/README.md) | Connect to Granite and run a first prompt | ✅ |
 | Building Agents | [2.1 Function Calling Agent](part-02-building-agents/function-calling.md) | The model selects tools, your program runs them | ✅ |
 | | [2.2 Plan-and-Solve Agent](part-02-building-agents/plan-and-solve.md) | Plan the steps up front, execute, replan | ✅ |

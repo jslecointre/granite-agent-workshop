@@ -34,10 +34,10 @@ None of this is visible from the outside: a task that looks like one request can
 
 ## Prerequisites
 
-This lab is a [Jupyter notebook](https://jupyter.org/). At the workshop, your workstation is already set up: there is nothing to install. To run it on your own machine or in Colab, complete the [pre-work](../pre-work/README.md) first. The notebook is self-contained and doesn't depend on the previous labs.
+This lab is a [Jupyter notebook](https://jupyter.org/). At the workshop, your workstation is already set up: there is nothing to install. To run it on your own machine or in Colab, complete [Getting Started](../getting-started/README.md) first. The notebook is self-contained and doesn't depend on the previous labs.
 
 /// note | Replicate token required
-This notebook calls Granite (`ibm-granite/granite-4.2-8b`) on [Replicate](https://replicate.com), so it needs `REPLICATE_API_TOKEN` in your `.env` file (or Colab secrets). See [Running the Notebooks Remotely (Colab)](../pre-work/README.md#running-the-notebooks-remotely-colab).
+This notebook calls Granite (`ibm-granite/granite-4.2-8b`) on [Replicate](https://replicate.com), so it needs `REPLICATE_API_TOKEN` in your `.env` file (or Colab secrets). See [Setting up Replicate](../part-01-access-the-model/README.md#setting-up-replicate).
 ///
 
 /// warning | Your numbers will differ
@@ -53,19 +53,19 @@ Open the notebook in the way that matches where you are working:
 
 /// tab | Lab workstation
 
-In JupyterLab, open `{{ notebook }}` from the file browser. If JupyterLab isn't running yet, see [At the workshop](../pre-work/README.md#at-the-workshop).
+In the JupyterLab file browser, open `granite-agent-workshop/{{ notebook }}`. If JupyterLab isn't running yet, see [Getting Started](../getting-started/README.md#open-jupyterlab).
 
 ///
 
 /// tab | Colab
 
-Click **Open in Colab** above. The first code cell installs everything the notebook needs. Colab needs a Replicate API token: see [Running the Notebooks Remotely (Colab)](../pre-work/README.md#running-the-notebooks-remotely-colab).
+Click **Open in Colab** above. The first code cell installs everything the notebook needs. Colab needs a Replicate API token: see [Setting up Replicate](../part-01-access-the-model/README.md#setting-up-replicate).
 
 ///
 
 /// tab | Your own machine
 
-From the `granite-agent-workshop` folder you cloned in the [pre-work](../pre-work/README.md#clone-the-workshop-repository), with its virtual environment active, run:
+From the `granite-agent-workshop` folder you cloned in [Getting Started](../getting-started/README.md), with its virtual environment active, run:
 
 ```shell
 jupyter notebook {{ notebook }}

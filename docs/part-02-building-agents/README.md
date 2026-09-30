@@ -6,7 +6,7 @@ logo: images/ibm-blue-background.png
 
 # Building Agents
 
-This part covers development. Each lab is a self-contained notebook that builds one agent architecture with IBM Granite and [LangGraph](https://www.langchain.com/langgraph). Start with the Function Calling Agent: every other pattern builds on it.
+This part covers agent development. Each lab is a self-contained notebook that builds one agent architecture with IBM Granite and [LangGraph](https://www.langchain.com/langgraph). Start with the Function Calling Agent: every other pattern builds on it.
 
 | Lab | Pattern | Core idea | Good fit when |
 | :--- | :--- | :--- | :--- |
