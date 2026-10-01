@@ -14,7 +14,7 @@ This lab takes the agent from [2.1 Function Calling Agent](../part-02-building-a
 1. Instrument the agent with Langfuse's callback handler and capture a trace, with no code changes to the agent itself.
 2. Review the trace in the Langfuse UI: LLM generations, tool calls, token counts, latency and cost.
 3. Collect and read a trace as JSON, to understand its structure well enough to write your own analysis over it.
-4. **⭐ Stretch:** run a Langfuse experiment to score agent output automatically, and see two ways to build a trace manually when automatic instrumentation isn't enough.
+4. run a Langfuse experiment to score agent output automatically, and see two ways to build a trace manually when automatic instrumentation isn't enough.
 
 ## Setting up Langfuse
 
@@ -131,3 +131,5 @@ jupyter notebook {{ notebook }}
 ```
 
 ///
+
+See also [granite-agent-cookbook pull request #82](https://github.com/ibm-granite-community/granite-agent-cookbook/pull/82).

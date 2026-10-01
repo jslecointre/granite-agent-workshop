@@ -1,5 +1,5 @@
 ---
-title: 2.7 Agent Harnesses
+title: 2.6 Agent Harnesses
 description: Agent loops, agent harnesses and agent skills
 logo: images/ibm-blue-background.png
 ---
@@ -55,7 +55,7 @@ An **agent harness** is the loop plus everything a production agent needs around
 | **Built-in tools** | The actions available out of the box | Read, write and edit files, run shell commands, search, fetch web pages |
 | **Context files** | Project or user instructions loaded into every session | `AGENTS.md` (and `CLAUDE.md` for compatibility) |
 | **Skills** | Packaged know-how loaded only when relevant | [Agent Skills](#agent-skills) folders with a `SKILL.md` |
-| **Context management** | Keeps the context window focused over long sessions | Compaction, pruning, memory files (see [2.6 Context Engineering](context-engineering.md)) |
+| **Context management** | Keeps the context window focused over long sessions | Compaction, pruning, memory files (see [6.1 Context Engineering](../part-06-advanced-topics/context-engineering.md)) |
 | **Permissions and sandboxing** | Controls what the agent may do without asking | Allow / ask / deny rules, containers, remote sandboxes |
 | **Extension points** | Adds capabilities without forking the harness | Plugins, MCP servers, custom agents, hooks |
 | **Interfaces** | How people and programs reach the agent | Terminal UI, headless or print mode, SDK, messaging apps |
@@ -159,7 +159,7 @@ Skills are designed to cost almost nothing until they're used. Harnesses load th
 | 2. Instructions | The full `SKILL.md` body | When the agent decides the skill is relevant | Under 5,000 tokens recommended |
 | 3. Resources | Files in `scripts/`, `references/`, `assets/` | Only if the instructions call for them | As needed |
 
-That's [2.6 Context Engineering](context-engineering.md) applied to know-how: an agent can have hundreds of skills installed while its context window holds only a line for each.
+That's [6.1 Context Engineering](../part-06-advanced-topics/context-engineering.md) applied to know-how: an agent can have hundreds of skills installed while its context window holds only a line for each.
 
 ### Skills, tools and MCP
 

@@ -1,5 +1,5 @@
 ---
-title: 2.6 Context Engineering
+title: 6.1 Context Engineering
 description: Managing what goes into an agent's context window
 logo: images/ibm-blue-background.png
 ---
@@ -63,11 +63,11 @@ The simplest strategy: when the message list passes a limit, drop the oldest mes
 
 ### Compaction
 
-Instead of dropping old messages, ask a model to summarize the conversation so far and replace the raw history with the summary. The agent keeps a coherent narrative, but summaries lose information, and compaction adds latency and cost when it runs. Treat the summarization prompt as a component in its own right, with its own tests. LangChain ships this as `SummarizationMiddleware` (see [2.7 Agent Harnesses](agent-harnesses.md#middleware)).
+Instead of dropping old messages, ask a model to summarize the conversation so far and replace the raw history with the summary. The agent keeps a coherent narrative, but summaries lose information, and compaction adds latency and cost when it runs. Treat the summarization prompt as a component in its own right, with its own tests. LangChain ships this as `SummarizationMiddleware` (see [2.6 Agent Harnesses](../part-02-building-agents/agent-harnesses.md#building-your-own-harness)).
 
 ### Dynamic tool selection
 
-Every tool definition costs tokens and gives the model another option to confuse. Research on large tool registries ([RAG-MCP](https://arxiv.org/abs/2505.03275)) found that tool selection accuracy drops sharply beyond about 30 tools with overlapping descriptions. The fix is to retrieve only the relevant tools for each call, which is exactly the [2.4 ToolRAG Agent](toolrag.md) pattern.
+Every tool definition costs tokens and gives the model another option to confuse. Research on large tool registries ([RAG-MCP](https://arxiv.org/abs/2505.03275)) found that tool selection accuracy drops sharply beyond about 30 tools with overlapping descriptions. The fix is to retrieve only the relevant tools for each call, which is exactly the [2.4 ToolRAG Agent](../part-02-building-agents/toolrag.md) pattern.
 
 ### Pruning
 
@@ -91,7 +91,7 @@ Retrieve only the relevant chunks from an external corpus at call time instead o
 
 ### Subagents
 
-Give independent subtasks their own context windows, so each subagent works from a clean, focused context and noise from one subtask can't leak into another. This is the idea behind [2.3 Route-and-Solve](route-and-solve.md). Keep subagents to *gathering* information, and leave the synthesis and final decisions to a single agent: tightly coupled subtasks split across agents produce contradictions.
+Give independent subtasks their own context windows, so each subagent works from a clean, focused context and noise from one subtask can't leak into another. This is the idea behind [2.3 Route-and-Solve](../part-02-building-agents/route-and-solve.md). Keep subagents to *gathering* information, and leave the synthesis and final decisions to a single agent: tightly coupled subtasks split across agents produce contradictions.
 
 ## Choosing a strategy
 

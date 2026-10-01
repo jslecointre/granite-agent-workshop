@@ -44,6 +44,10 @@ How to evaluate your agents with a structured test framework. Agents fail differ
 
 How to package an agent so other applications can call it, for example as an MCP server.
 
+### 6. Advanced Agent Topics
+
+Topics that matter once an agent works and you want it to keep working: **context engineering** to keep the context window focused, **agent security** to stop untrusted content from steering the agent, and **small language models** to make the agent cheaper, faster and easier to run where your data lives.
+
 ## About this workshop
 
 The introductory page of the workshop is broken down into the following sections:
@@ -55,7 +59,7 @@ The introductory page of the workshop is broken down into the following sections
 
 ### Agenda
 
-The workshop is organized into five parts, each covered by one or more Jupyter notebooks. Labs that are still being written are marked as coming soon.
+The workshop is organized into six parts, each covered by one or more Jupyter notebooks. Labs that are still being written are marked as coming soon.
 
 There is deliberately more material here than most people finish in the 90-minute session, and that is fine: work at your own pace, or follow along as the instructors walk through each notebook. Every notebook stays published on this site, so you can finish the rest afterwards.
 
@@ -68,12 +72,14 @@ There is deliberately more material here than most people finish in the 90-minut
 | | [2.3 Route-and-Solve Agent](part-02-building-agents/route-and-solve.md) | Route each query to a specialized subagent | ✅ |
 | | [2.4 ToolRAG Agent](part-02-building-agents/toolrag.md) | Retrieve the relevant tools before calling the model | ✅ |
 | | [2.5 ReAct Agent](part-02-building-agents/react.md) | Interleave reasoning with tool calls | ✅ |
-| | [2.6 Context Engineering](part-02-building-agents/context-engineering.md) | Keep the context window focused as conversations and tool lists grow | 🚧 Notebook coming soon |
-| | [2.7 Agent Harnesses](part-02-building-agents/agent-harnesses.md) | Agent loops, preset harnesses (Pi, OpenCode, Hermes) and Agent Skills | 🚧 Notebook coming soon |
+| | [2.6 Agent Harnesses](part-02-building-agents/agent-harnesses.md) | Agent loops, preset harnesses (Pi, OpenCode, Hermes) and Agent Skills | 🚧 Notebook coming soon |
 | Observing Agents | [3. Observing Agents](part-03-observing-agents/README.md) | Instrument an agent and read a trace with Langfuse | ✅ |
 | Testing Agents | [4.1 Functional Testing](part-04-testing-agents/functional-testing.md) | Trajectory and response tests, multi-turn tests, summary metrics, LLM-as-a-Judge | ✅ |
 | | [4.2 Non-Functional Testing](part-04-testing-agents/non-functional-testing.md) | Latency, cost, robustness and consistency | 🚧 Coming soon |
 | Packaging Agents | [5. Packaging Agents](part-05-packaging-agents/README.md) | Package an agent so other applications can call it | 🚧 Coming soon |
+| Advanced Agent Topics | [6.1 Context Engineering](part-06-advanced-topics/context-engineering.md) | Keep the context window focused as conversations and tool lists grow | 🚧 Notebook coming soon |
+| | [6.2 Agent Security](part-06-advanced-topics/agent-security.md) | Prompt injection, least-privilege tools and guardrails | 🚧 Notebook coming soon |
+| | [6.3 Small Language Models](part-06-advanced-topics/slms.md) | Why and how to build agents on small models | 🚧 Notebook coming soon |
 
 ### Technology Used
 
