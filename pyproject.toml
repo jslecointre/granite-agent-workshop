@@ -8,7 +8,7 @@ dependencies = [
     "grandalf>=0.8",
     "ibm-granite-community-utils",
     "jupyterlab>=4.6.3",
-    "langchain-chroma>=1.1.0",
+    "langchain>=1.4.3",
     "langchain-huggingface>=1.2.2",
     "langchain-ollama>=1.1.0",
     "langchain-replicate",
