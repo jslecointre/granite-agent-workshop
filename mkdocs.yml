@@ -29,7 +29,10 @@ nav:
       - Overview: part-04-testing-agents/README.md
       - 4.1 Functional Testing: part-04-testing-agents/functional-testing.md
       - 4.2 Non-Functional Testing: part-04-testing-agents/non-functional-testing.md
-    - 5. Packaging Agents: part-05-packaging-agents/README.md
+    - 5. Packaging Agents:
+      - Overview: part-05-packaging-agents/README.md
+      - 5.1 Packaging Tools with MCP: part-05-packaging-agents/mcp.md
+      - 5.2 Packaging Agents with A2A: part-05-packaging-agents/a2a.md
     - 6. Advanced Agent Topics:
       - Overview: part-06-advanced-topics/README.md
       - 6.1 Context Engineering: part-06-advanced-topics/context-engineering.md

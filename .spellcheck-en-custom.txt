@@ -84,6 +84,7 @@ Manus
 markdownlint
 matplotlib
 MCP
+mcp
 md
 Mellea
 microservice

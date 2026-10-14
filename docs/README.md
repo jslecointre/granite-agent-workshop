@@ -42,7 +42,7 @@ How to evaluate your agents with a structured test framework. Agents fail differ
 
 ### 5. Packaging Agents
 
-How to package an agent so other applications can call it, for example as an MCP server.
+How to package an agent so other applications can call it: its tools as a Model Context Protocol (MCP) server, and the agent itself as an Agent2Agent (A2A) service that other agents delegate to.
 
 ### 6. Advanced Agent Topics
 
@@ -76,7 +76,8 @@ There is deliberately more material here than most people finish in the 90-minut
 | Observing Agents | [3. Observing Agents](part-03-observing-agents/README.md) | Instrument an agent and read a trace with Langfuse | ✅ |
 | Testing Agents | [4.1 Functional Testing](part-04-testing-agents/functional-testing.md) | Trajectory and response tests, multi-turn tests, summary metrics, LLM-as-a-Judge | ✅ |
 | | [4.2 Non-Functional Testing](part-04-testing-agents/non-functional-testing.md) | Latency, cost, robustness and consistency | 🚧 Coming soon |
-| Packaging Agents | [5. Packaging Agents](part-05-packaging-agents/README.md) | Package an agent so other applications can call it | 🚧 Coming soon |
+| Packaging Agents | [5.1 Packaging Tools with MCP](part-05-packaging-agents/mcp.md) | Serve tools over MCP, test them with MCP Inspector, use them from a Granite agent | ✅ |
+| | [5.2 Packaging Agents with A2A](part-05-packaging-agents/a2a.md) | Serve agents over A2A, let them delegate to each other, inspect them with A2A Inspector | ✅ |
 | Advanced Agent Topics | [6.1 Context Engineering](part-06-advanced-topics/context-engineering.md) | Keep the context window focused as conversations and tool lists grow | 🚧 Notebook coming soon |
 | | [6.2 Agent Security](part-06-advanced-topics/agent-security.md) | Prompt injection, least-privilege tools and guardrails | 🚧 Notebook coming soon |
 | | [6.3 Small Language Models](part-06-advanced-topics/slms.md) | Why and how to build agents on small models | 🚧 Notebook coming soon |
