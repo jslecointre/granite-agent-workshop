@@ -65,7 +65,7 @@ jupyter notebook {{ notebook }}
 ### Start the Inspector
 
 1. Run the notebook up to step 2: it writes `notebooks/travel_mcp_server.py`.
-1. Open <http://localhost:6274>. If the Inspector loads, go to the next step.
+1. Open [http://localhost:6274](http://localhost:6274){:target="_blank"}. If the Inspector loads, go to the next step.
 1. Otherwise, from the `granite-agent-workshop` folder, run the command below and open the URL it prints. Keep the terminal open; `Ctrl+C` stops it.
 
     ```shell
