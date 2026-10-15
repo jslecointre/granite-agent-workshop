@@ -58,24 +58,87 @@ jupyter notebook {{ notebook }}
 
 ///
 
-## Test the server with MCP Inspector
+## MCP Inspector
 
-Run the notebook up to step 2 first: it writes the server to `notebooks/travel_mcp_server.py`. Then, from the `granite-agent-workshop` folder:
+[MCP Inspector](https://github.com/modelcontextprotocol/inspector) is a browser MCP client: it calls your server's tools directly, with no model involved.
 
-```shell
-npx -y @modelcontextprotocol/inspector .venv/bin/python notebooks/travel_mcp_server.py
-```
+### Start the Inspector
 
-Open the URL it prints, select **Connect**, then **Tools** → **List Tools**, and check:
+1. Run the notebook up to step 2: it writes `notebooks/travel_mcp_server.py`.
+1. Open <http://localhost:6274>. If the Inspector loads, go to the next step.
+1. Otherwise, from the `granite-agent-workshop` folder, run the command below and open the URL it prints. Keep the terminal open; `Ctrl+C` stops it.
 
-| Call | Expected result |
-| :--- | :--- |
-| `find_flight` with `destination=Atlanta`, `date=2026-10-25` | Flight `UA321`, departs 08:30 |
-| `find_flight` with `destination=ATL`, `date=2026-10-25` | The same flight: the server normalized the city |
-| `find_flight` with `destination=Paris` | An `error` field, not an exception |
+    ```shell
+    npx -y @modelcontextprotocol/inspector
+    ```
 
-If you fill in the **Add server** form by hand instead, set **Command** to the full path of the virtual environment's Python (the notebook prints it). The gray `npx` in that field is only a placeholder.
+### Configure the travel server
 
-/// note | Remote virtual machine
-MCP Inspector listens on `localhost` ports 6274 (UI) and 6277 (proxy). Forward both before opening the URL: `ssh -L 6274:localhost:6274 -L 6277:localhost:6277 <user>@<host>`.
-///
+On **Servers**, select **Add Servers** and paste these values:
+
+1. **Server ID**:
+
+    ```text
+    travel
+    ```
+
+1. **Transport**: `stdio (local process)`.
+
+1. **Command** and **Arguments**:
+
+    /// tab | Lab workstation
+
+    **Command**:
+
+    ```text
+    /root/granite-agent-workshop-tx2026/.venv/bin/python
+    ```
+
+    **Arguments**:
+
+    ```text
+    /root/granite-agent-workshop-tx2026/granite-agent-workshop/notebooks/travel_mcp_server.py
+    ```
+
+    ///
+
+    /// tab | Your own machine
+
+    With the virtual environment active, print the two values (first line → **Command**, second → **Arguments**):
+
+    ```shell
+    python -c "import sys; print(sys.executable)"
+    realpath notebooks/travel_mcp_server.py
+    ```
+
+    ///
+
+1. **Environment**: leave empty.
+
+![MCP Inspector server form configured for the travel server](../images/mcp_inspector_configure.png)
+
+The Inspector starts the server itself over `stdio`: don't run `travel_mcp_server.py` separately.
+
+### Connect
+
+Save, then turn on the toggle on the `travel` card. It shows **Connected**, and the **Protocol** panel logs the `initialize` and `tools/list` messages. If it fails, check the **Console** tab.
+
+![The travel server connected in MCP Inspector](../images/mcp_inspector_travel_connect.png)
+
+### Call a tool
+
+Open **Tools**, select `find_flight`, paste these values, then select **Execute Tool**:
+
+1. **Destination**:
+
+    ```text
+    ATLANTA
+    ```
+
+1. **Date**:
+
+    ```text
+    2026-10-25
+    ```
+
+![Calling find_flight from MCP Inspector](../images/mcp_inspector_execute_tool.png)
