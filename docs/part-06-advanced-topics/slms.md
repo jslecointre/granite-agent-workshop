@@ -22,7 +22,7 @@ The NVIDIA Research position paper [Small Language Models are the Future of Agen
 | **Latency** | Faster calls add up to a noticeably faster agent, and make multi-step patterns such as [2.2 Plan-and-Solve](../part-02-building-agents/plan-and-solve.md) practical. |
 | **Local and private deployment** | A small model runs on a laptop, a single GPU or on-premises, so sensitive data never leaves your infrastructure. |
 | **Fine-tuning** | Specializing a small model on your tools and formats is fast and affordable. |
-| **Energy** | Fewer parameters mean less compute per token (see [4.2 Non-Functional Testing](../part-04-testing-agents/non-functional-testing.md)). |
+| **Energy** | Fewer parameters mean less compute per token. |
 
 ## Where small models struggle
 
@@ -61,7 +61,7 @@ Small models are good at filling in a structure and less reliable at inventing o
 
 ### Specialize with fine-tuning
 
-When prompting isn't enough, fine-tune. Every call that your agent makes is a potential training example: log the calls (see [3. Observing Agents](../part-03-observing-agents/README.md)), keep the ones that succeeded, and use them to train a small model specialized for that step. Parameter-efficient methods such as LoRA keep this affordable. Re-run your [4.1 Functional Testing](../part-04-testing-agents/functional-testing.md) suite after every change to confirm the specialized model is actually better.
+When prompting isn't enough, fine-tune. Every call that your agent makes is a potential training example: log the calls (see [3. Observing Agents](../part-03-observing-agents/README.md)), keep the ones that succeeded, and use them to train a small model specialized for that step. Parameter-efficient methods such as LoRA keep this affordable. Re-run your [4. Testing Agents](../part-04-testing-agents/README.md) suite after every change to confirm the specialized model is actually better.
 
 ## Choosing a model size
 

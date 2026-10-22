@@ -74,7 +74,7 @@ Each pattern trades away some flexibility for safety. Pick the least flexible de
 
 ## Test it
 
-Security is a property you test, not one you assume. Add adversarial cases to your [4.1 Functional Testing](../part-04-testing-agents/functional-testing.md) suite:
+Security is a property you test, not one you assume. Add adversarial cases to your [4. Testing Agents](../part-04-testing-agents/README.md) suite:
 
 - Tool results and retrieved documents that contain injected instructions.
 - Requests that try to make the agent call a tool outside its task.

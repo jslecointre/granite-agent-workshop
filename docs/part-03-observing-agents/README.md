@@ -9,16 +9,54 @@ notebook: notebooks/02_Agent_Tracing_Observability.ipynb
 
 Once an agent leaves your notebook, print statements stop being an option. Unlike traditional deterministic software, agentic AI systems produce non-deterministic, multi-step behaviors that shift the operational question from "is it up?" to "is it right?" Observability -- capturing rich telemetry and traceability -- is what lets you answer that question in production.
 
-This lab takes the agent from [2.1 Function Calling Agent](../part-02-building-agents/function-calling.md) (`get_llm()`, `get_stock_price`, `get_current_weather`, `build_agent()`) and instruments it with [Langfuse](https://langfuse.com) tracing. You will:
+This lab takes the agent from [2.1 Function Calling Agent](../part-02-building-agents/function-calling.md) (`get_stock_price`, `get_current_weather`) and makes every run visible in [Langfuse](https://langfuse.com). The notebook:
 
-1. Instrument the agent with Langfuse's callback handler and capture a trace, with no code changes to the agent itself.
-2. Review the trace in the Langfuse UI: LLM generations, tool calls, token counts, latency and cost.
-3. Collect and read a trace as JSON, to understand its structure well enough to write your own analysis over it.
-4. run a Langfuse experiment to score agent output automatically, and see two ways to build a trace manually when automatic instrumentation isn't enough.
+1. Connects to Langfuse with the keys from your `.env` file.
+2. Builds the agent and checks that it answers a simple query.
+3. Adds Langfuse's callback handler to the agent call. The agent code doesn't change, and each run becomes a trace.
+4. Opens the trace in the Langfuse UI: each Granite call shows its prompt, tools, response, token counts and latency, and each tool call shows as its own node.
+5. Fetches the trace through the Langfuse API and reads its JSON: the input and output messages, the nested observations and the latency, so you can write your own analysis over it. If Langfuse isn't reachable, it reads a bundled sample trace instead.
+
+## Prerequisites
+
+This lab is a [Jupyter notebook](https://jupyter.org/). At the workshop, your workstation is already set up: there is nothing to install. To run it on your own machine or in Colab, complete [Getting Started](../getting-started/README.md) first. The notebook is self-contained, but it helps to complete [2.1 Function Calling Agent](../part-02-building-agents/function-calling.md) first, because this lab instruments the same agent.
+
+The notebook needs a running Langfuse and its API keys in `.env`. On the lab workstation, Langfuse runs at <http://localhost:3000>; if you don't have an account and keys there yet, or you're working elsewhere, follow [Setting up Langfuse](#setting-up-langfuse) first.
+
+## Lab
+
+[![Agent Observability](https://badgen.net/badge/icon/github?icon=github&label=View%20on "View on GitHub")]({{ config.repo_url }}/blob/{{ extra.repo_branch }}/{{ notebook }}){:target="_blank"}
+[![Agent Observability](https://colab.research.google.com/assets/colab-badge.svg "Open In Colab")]({{ extra.colab_url }}/blob/{{ extra.repo_branch }}/{{ notebook }}){:target="_blank"}
+
+Open the notebook in the way that matches where you are working:
+
+/// tab | Lab workstation
+
+In the JupyterLab file browser, open `granite-agent-workshop/{{ notebook }}`. If JupyterLab isn't running yet, see [Getting Started](../getting-started/README.md#open-jupyterlab).
+
+///
+
+/// tab | Colab
+
+Click **Open in Colab** above. The first code cell installs everything the notebook needs. Colab needs a Replicate API token: see [Setting up Replicate](../part-01-access-the-model/README.md#setting-up-replicate).
+
+///
+
+/// tab | Your own machine
+
+From the `granite-agent-workshop` folder you cloned in [Getting Started](../getting-started/README.md), with its virtual environment active, run:
+
+```shell
+jupyter notebook {{ notebook }}
+```
+
+///
+
+See also [granite-agent-cookbook pull request #82](https://github.com/ibm-granite-community/granite-agent-cookbook/pull/82).
 
 ## Setting up Langfuse
 
-This lab, and the [Testing Agents](../part-04-testing-agents/README.md) labs after it, send traces to a [Langfuse](https://langfuse.com) project. In this section you create an account, an organization and a project, then copy the project's API keys into `.env`.
+This lab sends traces to a [Langfuse](https://langfuse.com) project. In this section you create an account, an organization and a project, then copy the project's API keys into `.env`.
 
 ### Get access to Langfuse
 
@@ -98,38 +136,3 @@ The steps below show the workstation's Langfuse at <http://localhost:3000>. On L
     ///
 
 1. Save the file. If a notebook is already running, restart its kernel so it picks up the new values.
-
-## Prerequisites
-
-This lab is a [Jupyter notebook](https://jupyter.org/). At the workshop, your workstation is already set up: there is nothing to install. To run it on your own machine or in Colab, complete [Getting Started](../getting-started/README.md) first. The notebook is self-contained, but it helps to complete [2.1 Function Calling Agent](../part-02-building-agents/function-calling.md) first, because this lab instruments the same agent.
-
-## Lab
-
-[![Agent Observability](https://badgen.net/badge/icon/github?icon=github&label=View%20on "View on GitHub")]({{ config.repo_url }}/blob/{{ extra.repo_branch }}/{{ notebook }}){:target="_blank"}
-[![Agent Observability](https://colab.research.google.com/assets/colab-badge.svg "Open In Colab")]({{ extra.colab_url }}/blob/{{ extra.repo_branch }}/{{ notebook }}){:target="_blank"}
-
-Open the notebook in the way that matches where you are working:
-
-/// tab | Lab workstation
-
-In the JupyterLab file browser, open `granite-agent-workshop/{{ notebook }}`. If JupyterLab isn't running yet, see [Getting Started](../getting-started/README.md#open-jupyterlab).
-
-///
-
-/// tab | Colab
-
-Click **Open in Colab** above. The first code cell installs everything the notebook needs. Colab needs a Replicate API token: see [Setting up Replicate](../part-01-access-the-model/README.md#setting-up-replicate).
-
-///
-
-/// tab | Your own machine
-
-From the `granite-agent-workshop` folder you cloned in [Getting Started](../getting-started/README.md), with its virtual environment active, run:
-
-```shell
-jupyter notebook {{ notebook }}
-```
-
-///
-
-See also [granite-agent-cookbook pull request #82](https://github.com/ibm-granite-community/granite-agent-cookbook/pull/82).

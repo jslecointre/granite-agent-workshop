@@ -38,7 +38,7 @@ Once an agent leaves your notebook, print statements stop being an option. This 
 
 ### 4. Testing Agents
 
-How to evaluate your agents with a structured test framework. Agents fail differently from ordinary software: the output can be fluent, confident and wrong, and the same input can take a different path on a different day. This part covers testing the trajectory as well as the final answer, single-turn and multi-turn test cases, and using an LLM-as-a-judge to score answers where an exact-match check is not enough. Correctness is only half the picture: because an agent is a loop, cost and latency compound with every step, so you also measure and reduce its non-functional requirements (token cost, latency, throughput, memory and energy footprint) and track them alongside quality on every change.
+How to evaluate your agents with a structured test framework. Agents fail differently from ordinary software: the output can be fluent, confident and wrong, and the same input can take a different path on a different day. This part covers using an LLM-as-a-judge to check final answers where an exact-match check is not enough, testing the trajectory (which tools the agent called, with which arguments), and multi-turn test cases. Correctness is only half the picture: because an agent is a loop, latency and cost compound with every step, so you also track them alongside the pass rate.
 
 ### 5. Packaging Agents
 
@@ -74,8 +74,7 @@ There is deliberately more material here than most people finish in the 90-minut
 | | [2.5 ReAct Agent](part-02-building-agents/react.md) | Interleave reasoning with tool calls | ✅ |
 | | [2.6 Agent Harnesses](part-02-building-agents/agent-harnesses.md) | Agent loops, preset harnesses (Pi, OpenCode, Hermes) and Agent Skills | 🚧 Notebook coming soon |
 | Observing Agents | [3. Observing Agents](part-03-observing-agents/README.md) | Instrument an agent and read a trace with Langfuse | ✅ |
-| Testing Agents | [4.1 Functional Testing](part-04-testing-agents/functional-testing.md) | Trajectory and response tests, multi-turn tests, summary metrics, LLM-as-a-Judge | ✅ |
-| | [4.2 Non-Functional Testing](part-04-testing-agents/non-functional-testing.md) | Latency, cost, robustness and consistency | 🚧 Coming soon |
+| Testing Agents | [4. Testing Agents](part-04-testing-agents/README.md) | LLM-as-a-Judge, trajectory tests, multi-turn tests, latency and pass rates | ✅ |
 | Packaging Agents | [5.1 Packaging Tools with MCP](part-05-packaging-agents/mcp.md) | Serve tools over MCP, test them with MCP Inspector, use them from a Granite agent | ✅ |
 | | [5.2 Packaging Agents with A2A](part-05-packaging-agents/a2a.md) | Serve agents over A2A, let them delegate to each other, inspect them with A2A Inspector | ✅ |
 | Advanced Agent Topics | [6.1 Context Engineering](part-06-advanced-topics/context-engineering.md) | Keep the context window focused as conversations and tool lists grow | 🚧 Notebook coming soon |

@@ -20,6 +20,7 @@ In this lab you package three travel tools (`find_flight`, `book_hotel`, `get_fo
 | 2.1 | Call the tools in [MCP Inspector](https://github.com/modelcontextprotocol/inspector) | Test the server with no model involved. If a tool misbehaves here, the bug is in the server, not in the prompt. |
 | 3 | Connect a LangGraph agent with [`langchain-mcp-adapters`](https://reference.langchain.com/python/langchain-mcp-adapters) | `MultiServerMCPClient` turns MCP tools into LangChain tools: the agent code contains no protocol code. |
 | 4 | Decide when MCP is worth it | Use it when a tool is shared, owned by another team, or must run in another process. For one agent in one process, a plain tool is simpler. |
+| 5 | Package the whole agent as an MCP server | Wrap the agent in a single `plan_trip` tool. The caller needs only an MCP client: the model, the agent loop and the three tools all run inside the server. |
 
 ## Prerequisites
 
@@ -142,3 +143,31 @@ Open **Tools**, select `find_flight`, paste these values, then select **Execute 
     ```
 
 ![Calling find_flight from MCP Inspector](../images/mcp_inspector_execute_tool.png)
+
+### Call the packaged agent
+
+Step 5 of the notebook writes `notebooks/travel_agent_mcp_server.py`: the whole travel agent behind one MCP tool, `plan_trip`. Add it as a second server, the same way as `travel`:
+
+1. **Server ID**:
+
+    ```text
+    travel-agent
+    ```
+
+1. **Transport**: `stdio (local process)`.
+
+1. **Command**: the same as for `travel`.
+
+1. **Arguments**: the same path as for `travel`, ending in `travel_agent_mcp_server.py` instead of `travel_mcp_server.py`.
+
+1. **Environment**: leave empty. The server reads `REPLICATE_API_TOKEN` from the `.env` file in the repository; without it, it uses Ollama with `granite4.2:3b`.
+
+Connect, then open **Tools**. The list shows one tool, `plan_trip`, not the three travel tools. Select it, paste this **Request**, then select **Execute Tool**:
+
+```text
+Plan a 2-day trip to Atlanta starting 2026-10-25. Find me a flight, book a hotel, and tell me the weather.
+```
+
+The result is the agent's trip summary. The **Protocol** panel shows a single `tools/call`: the model calls and the `find_flight`, `book_hotel` and `get_forecast` calls all happen inside the server.
+
+An agent run takes longer than the Inspector's default 10-second request timeout. If the call fails with a timeout, raise **Request Timeout** in the Inspector settings to `120000` (ms) and run it again.

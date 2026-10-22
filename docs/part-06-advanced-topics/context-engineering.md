@@ -113,7 +113,7 @@ Context management is use-case specific. These combinations are starting points:
 - **Know your failure mode.** Poisoning, distraction, confusion and clash need different fixes.
 - **Separate gathering from deciding.** Subagents are good at the first; a single agent is better at the second.
 - **Summarization loses information.** Offloading to a scratchpad or files is safer when details matter.
-- **Test at your real context lengths.** Needle-in-a-haystack scores overstate how well models use long context; test with your own history lengths and your own distractors, using [4.1 Functional Testing](../part-04-testing-agents/functional-testing.md).
+- **Test at your real context lengths.** Needle-in-a-haystack scores overstate how well models use long context; test with your own history lengths and your own distractors, using [4. Testing Agents](../part-04-testing-agents/README.md).
 - **Structure your context.** Typed LangGraph state makes pruning, summarizing and selective retrieval much easier.
 
 ## References

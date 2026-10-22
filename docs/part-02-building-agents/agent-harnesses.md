@@ -207,7 +207,7 @@ result = agent.invoke(
 Each harness building block has a counterpart here: `system_prompt` is the built-in prompt, `tools` the built-in tools, and middleware covers step limits, context management (`SummarizationMiddleware`, `ContextEditingMiddleware`), human approval (`HumanInTheLoopMiddleware`) and retries.
 
 /// info | System prompts and tool calling
-With some models, a custom system prompt replaces the model's default tool-calling instructions, and tool calling gets worse. When you change the `system_prompt`, rerun your [functional tests](../part-04-testing-agents/functional-testing.md) to confirm the agent still calls the right tools.
+With some models, a custom system prompt replaces the model's default tool-calling instructions, and tool calling gets worse. When you change the `system_prompt`, rerun your [agent tests](../part-04-testing-agents/README.md) to confirm the agent still calls the right tools.
 ///
 
 /// warning | Check your LangChain version
