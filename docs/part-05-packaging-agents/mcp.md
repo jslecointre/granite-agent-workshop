@@ -19,8 +19,7 @@ In this lab you package three travel tools (`find_flight`, `book_hotel`, `get_fo
 | 2 | Build the server with [FastMCP](https://github.com/modelcontextprotocol/python-sdk) | One decorator turns a typed Python function into a tool. The docstring becomes the description the model reads, so write it for the model. |
 | 2.1 | Call the tools in [MCP Inspector](https://github.com/modelcontextprotocol/inspector) | Test the server with no model involved. If a tool misbehaves here, the bug is in the server, not in the prompt. |
 | 3 | Connect a LangGraph agent with [`langchain-mcp-adapters`](https://reference.langchain.com/python/langchain-mcp-adapters) | `MultiServerMCPClient` turns MCP tools into LangChain tools: the agent code contains no protocol code. |
-| 4 | Decide when MCP is worth it | Use it when a tool is shared, owned by another team, or must run in another process. For one agent in one process, a plain tool is simpler. |
-| 5 | Package the whole agent as an MCP server | Wrap the agent in a single `plan_trip` tool. The caller needs only an MCP client: the model, the agent loop and the three tools all run inside the server. |
+| 4 | Package the whole agent as an MCP server | Wrap the agent in a single `plan_trip` tool. The caller needs only an MCP client: the model, the agent loop and the three tools all run inside the server. |
 
 ## Prerequisites
 
@@ -146,7 +145,11 @@ Open **Tools**, select `find_flight`, paste these values, then select **Execute 
 
 ### Call the packaged agent
 
-Step 5 of the notebook writes `notebooks/travel_agent_mcp_server.py`: the whole travel agent behind one MCP tool, `plan_trip`. Add it as a second server, the same way as `travel`:
+Step 5 of the notebook writes `notebooks/travel_agent_mcp_server.py`: the whole travel agent behind one MCP tool, `plan_trip`. Here you call that agent from MCP Inspector as if it were an ordinary tool.
+
+#### Configure the travel agent server
+
+Run the notebook up to step 5 so that `travel_agent_mcp_server.py` exists. Then, on **Servers**, select **Add Servers** and paste these values:
 
 1. **Server ID**:
 
@@ -156,18 +159,59 @@ Step 5 of the notebook writes `notebooks/travel_agent_mcp_server.py`: the whole 
 
 1. **Transport**: `stdio (local process)`.
 
-1. **Command**: the same as for `travel`.
+1. **Command** and **Arguments**:
 
-1. **Arguments**: the same path as for `travel`, ending in `travel_agent_mcp_server.py` instead of `travel_mcp_server.py`.
+    /// tab | Lab workstation
+
+    **Command**:
+
+    ```text
+    /root/granite-agent-workshop-tx2026/.venv/bin/python
+    ```
+
+    **Arguments**:
+
+    ```text
+    /root/granite-agent-workshop-tx2026/granite-agent-workshop/notebooks/travel_agent_mcp_server.py
+    ```
+
+    ///
+
+    /// tab | Your own machine
+
+    With the virtual environment active, print the two values (first line → **Command**, second → **Arguments**):
+
+    ```shell
+    python -c "import sys; print(sys.executable)"
+    realpath notebooks/travel_agent_mcp_server.py
+    ```
+
+    ///
 
 1. **Environment**: leave empty. The server reads `REPLICATE_API_TOKEN` from the `.env` file in the repository; without it, it uses Ollama with `granite4.2:3b`.
 
-Connect, then open **Tools**. The list shows one tool, `plan_trip`, not the three travel tools. Select it, paste this **Request**, then select **Execute Tool**:
+#### Connect to the travel agent
 
-```text
-Plan a 2-day trip to Atlanta starting 2026-10-25. Find me a flight, book a hotel, and tell me the weather.
-```
+Save, then turn on the toggle on the `travel-agent` card. It shows **Connected**. If it fails, check the **Console** tab.
 
-The result is the agent's trip summary. The **Protocol** panel shows a single `tools/call`: the model calls and the `find_flight`, `book_hotel` and `get_forecast` calls all happen inside the server.
+#### Call `plan_trip`
 
-An agent run takes longer than the Inspector's default 10-second request timeout. If the call fails with a timeout, raise **Request Timeout** in the Inspector settings to `120000` (ms) and run it again.
+1. Open **Tools**. The list shows one tool, `plan_trip`, not the three travel tools: the agent is the tool.
+
+1. Select `plan_trip` and paste this **Request**:
+
+    ```text
+    Plan a 2-day trip to Atlanta starting 2026-10-25. Find me a flight, book a hotel, and tell me the weather.
+    ```
+
+1. Select **Execute Tool**. The run takes a while: the agent calls Granite and the travel tools before it answers.
+
+    /// note | Request timed out?
+    An agent run takes longer than the Inspector's default 10-second request timeout. If the call fails with a timeout, raise **Request Timeout** in the Inspector settings to `120000` (ms) and run it again.
+    ///
+
+1. Check the result: **Results** shows the agent's trip summary, with the flight, the hotel booking and the weather for each day, and **Structured Output** shows the same text as `{"result": ...}`.
+
+    ![Calling the travel agent's plan_trip tool from MCP Inspector](../images/mcp_inspector_execute_agnt_as_tool.png)
+
+The **Protocol** panel shows a single `tools/call`: the model calls and the `find_flight`, `book_hotel` and `get_forecast` calls all happen inside the server.

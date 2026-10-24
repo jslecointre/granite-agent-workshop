@@ -9,7 +9,9 @@ notebook: notebooks/02_Agent_Tracing_Observability.ipynb
 
 Once an agent leaves your notebook, print statements stop being an option. Unlike traditional deterministic software, agentic AI systems produce non-deterministic, multi-step behaviors that shift the operational question from "is it up?" to "is it right?" Observability -- capturing rich telemetry and traceability -- is what lets you answer that question in production.
 
-This lab takes the agent from [2.1 Function Calling Agent](../part-02-building-agents/function-calling.md) (`get_stock_price`, `get_current_weather`) and makes every run visible in [Langfuse](https://langfuse.com). The notebook:
+This lab takes the agent from [2.1 Function Calling Agent](../part-02-building-agents/function-calling.md) (`get_stock_price`, `get_current_weather`) and makes every run visible in [Langfuse](https://langfuse.com).
+
+The notebook:
 
 1. Connects to Langfuse with the keys from your `.env` file.
 2. Builds the agent and checks that it answers a simple query.
@@ -21,7 +23,7 @@ This lab takes the agent from [2.1 Function Calling Agent](../part-02-building-a
 
 This lab is a [Jupyter notebook](https://jupyter.org/). At the workshop, your workstation is already set up: there is nothing to install. To run it on your own machine or in Colab, complete [Getting Started](../getting-started/README.md) first. The notebook is self-contained, but it helps to complete [2.1 Function Calling Agent](../part-02-building-agents/function-calling.md) first, because this lab instruments the same agent.
 
-The notebook needs a running Langfuse and its API keys in `.env`. On the lab workstation, Langfuse runs at <http://localhost:3000>; if you don't have an account and keys there yet, or you're working elsewhere, follow [Setting up Langfuse](#setting-up-langfuse) first.
+The notebook needs a running Langfuse and its API keys in `.env`. On the lab workstation, Langfuse is already running at <http://localhost:3000>; if you don't have an account and keys there yet, or you're working elsewhere, follow [Setting up Langfuse](#setting-up-langfuse) first.
 
 ## Lab
 
@@ -56,13 +58,27 @@ See also [granite-agent-cookbook pull request #82](https://github.com/ibm-granit
 
 ## Setting up Langfuse
 
-This lab sends traces to a [Langfuse](https://langfuse.com) project. In this section you create an account, an organization and a project, then copy the project's API keys into `.env`.
+This lab sends traces to a [Langfuse](https://langfuse.com) project. In this section you sign in, create an organization and a project, then copy the project's API keys into `.env`.
 
 ### Get access to Langfuse
 
 /// tab | Lab workstation
 
-Langfuse is already running on the workstation at <http://localhost:3000>. There is nothing to install.
+Langfuse is already running on the workstation. There is nothing to install: just check that it's up.
+
+1. In the browser, open <http://localhost:3000>. The Langfuse sign-in page should appear.
+
+    /// note | Langfuse doesn't load?
+    If the page doesn't load, Langfuse isn't running. Open a terminal and start it from its directory:
+
+    ```shell
+    cd /root/granite-agent-workshop-tx2026/langfuse
+    sudo docker compose up -d
+    ```
+
+    Wait a minute for the containers to start, then reload <http://localhost:3000>. If it still doesn't load, raise your hand.
+
+    ///
 
 ///
 
@@ -88,13 +104,16 @@ If you'd rather not run Docker, [create a free account](https://us.cloud.langfus
 
 The steps below show the workstation's Langfuse at <http://localhost:3000>. On Langfuse Cloud, the screens are the same but the URL differs.
 
-### Create an account
+### Sign in
 
-1. In the browser, open <http://localhost:3000>.
+1. On the lab workstation, a Langfuse user was created for you before the lab. On the Langfuse sign-in page at <http://localhost:3000>, sign in with the email and password from your lab instructions.
 
-1. Click **No account yet? Sign up**, then enter your name, email and a password. This account exists only in the Langfuse instance you are using.
+    /// note | Still need to create an account?
+    If you don't have a Langfuse user yet, or you're using your own Langfuse or Langfuse Cloud, create one: on the sign-in page, click **No account yet? Sign up**, then enter your name, email and a password. This account exists only in the Langfuse instance you are using.
 
     ![Langfuse sign-in page with the Sign up link](../images/observing-agents/langfuse_sign_up.png)
+
+    ///
 
 ### Create an organization and a project
 
