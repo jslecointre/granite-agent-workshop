@@ -23,7 +23,7 @@ nav:
       - 2.3 Route-and-Solve Agent: part-02-building-agents/route-and-solve.md
       - 2.4 ToolRAG Agent: part-02-building-agents/toolrag.md
       - 2.5 ReAct Agent: part-02-building-agents/react.md
-      - 2.6 Agent Harnesses: part-02-building-agents/agent-harnesses.md
+      - 2.6 Agent Harnesses: part-02-building-agents/agent-harness.md
     - 3. Observing Agents: part-03-observing-agents/README.md
     - 4. Testing Agents: part-04-testing-agents/README.md
     - 5. Packaging Agents:

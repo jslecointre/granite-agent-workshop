@@ -63,7 +63,7 @@ The simplest strategy: when the message list passes a limit, drop the oldest mes
 
 ### Compaction
 
-Instead of dropping old messages, ask a model to summarize the conversation so far and replace the raw history with the summary. The agent keeps a coherent narrative, but summaries lose information, and compaction adds latency and cost when it runs. Treat the summarization prompt as a component in its own right, with its own tests. LangChain ships this as `SummarizationMiddleware` (see [2.6 Agent Harnesses](../part-02-building-agents/agent-harnesses.md#building-your-own-harness)).
+Instead of dropping old messages, ask a model to summarize the conversation so far and replace the raw history with the summary. The agent keeps a coherent narrative, but summaries lose information, and compaction adds latency and cost when it runs. Treat the summarization prompt as a component in its own right, with its own tests. LangChain ships this as `SummarizationMiddleware` (see [2.6 Agent Harnesses](../part-02-building-agents/agent-harness.md)).
 
 ### Dynamic tool selection
 

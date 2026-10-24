@@ -72,7 +72,7 @@ There is deliberately more material here than most people finish in the 90-minut
 | | [2.3 Route-and-Solve Agent](part-02-building-agents/route-and-solve.md) | Route each query to a specialized subagent | ✅ |
 | | [2.4 ToolRAG Agent](part-02-building-agents/toolrag.md) | Retrieve the relevant tools before calling the model | ✅ |
 | | [2.5 ReAct Agent](part-02-building-agents/react.md) | Interleave reasoning with tool calls | ✅ |
-| | [2.6 Agent Harnesses](part-02-building-agents/agent-harnesses.md) | Agent loops, preset harnesses (Pi, OpenCode, Hermes) and Agent Skills | 🚧 Notebook coming soon |
+| | [2.6 Agent Harnesses](part-02-building-agents/agent-harness.md) | Agent loops, preset harnesses (Pi, OpenCode, Hermes) and Agent Skills | ✅ |
 | Observing Agents | [3. Observing Agents](part-03-observing-agents/README.md) | Instrument an agent and read a trace with Langfuse | ✅ |
 | Testing Agents | [4. Testing Agents](part-04-testing-agents/README.md) | LLM-as-a-Judge, trajectory tests, multi-turn tests, latency and pass rates | ✅ |
 | Packaging Agents | [5.1 Packaging Tools with MCP](part-05-packaging-agents/mcp.md) | Serve tools over MCP, test them with MCP Inspector, use them from a Granite agent | ✅ |

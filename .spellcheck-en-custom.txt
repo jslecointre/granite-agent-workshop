@@ -26,6 +26,7 @@ cli
 Colab
 colab
 config
+configs
 contextEditingMiddleware
 CPUs
 cwd
@@ -79,6 +80,7 @@ LM
 loadout
 lockfile
 LongMemEval
+LSP
 Mangal
 Manus
 markdownlint
