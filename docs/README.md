@@ -6,7 +6,7 @@ logo: images/ibm-blue-background.png
 
 ## Introduction
 
-In this session you will build, test and observe AI agents using the open-source [IBM Granite](https://ibm.com/agent) models.
+In this session you will build, test and observe AI agents using the open-source [IBM Granite](https://www.ibm.com/granite) models.
 
 An agent is a system in which a large language model directs its own work. The model chooses which tools to call, your code executes them and returns the results, and the model uses what it learns to choose its next step, repeating until it decides the task is complete.
 
