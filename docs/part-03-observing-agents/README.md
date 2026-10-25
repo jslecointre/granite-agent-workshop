@@ -54,8 +54,6 @@ jupyter notebook {{ notebook }}
 
 ///
 
-See also [granite-agent-cookbook pull request #82](https://github.com/ibm-granite-community/granite-agent-cookbook/pull/82).
-
 ## Setting up Langfuse
 
 This lab sends traces to a [Langfuse](https://langfuse.com) project. In this section you sign in, create an organization and a project, then copy the project's API keys into `.env`.
