@@ -8,13 +8,13 @@ dependencies = [
     "a2a-sdk[http-server]>=1.2.2,<2",
     "grandalf>=0.8",
     "httpx>=0.28.1",
-    "ibm-granite-community-utils",
+    "ibm-granite-community-utils @ git+https://github.com/ibm-granite-community/utils.git",
     "jupyterlab>=4.6.3",
     "langchain>=1.4.3",
     "langchain-huggingface>=1.2.2",
     "langchain-mcp-adapters>=0.3.2",
     "langchain-ollama>=1.1.0",
-    "langchain-replicate",
+    "langchain-replicate @ git+https://github.com/ibm-granite-community/langchain-replicate.git",
     "langfuse>=4.15.4",
     "langgraph>=1.2.11",
     "matplotlib>=3.11.2",
@@ -29,6 +29,10 @@ dependencies = [
     "uvicorn>=0.54.0",
 ]
 
-[tool.uv.sources]
-langchain-replicate = { git = "https://github.com/ibm-granite-community/langchain-replicate.git" }
-ibm-granite-community-utils = { git = "https://github.com/ibm-granite-community/utils.git" }
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+# The workshop ships notebooks and docs, not an importable package: install dependencies only.
+[tool.setuptools]
+packages = []

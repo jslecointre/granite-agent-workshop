@@ -126,13 +126,13 @@ From the `granite-agent-workshop` folder you cloned above:
     source venv/bin/activate
     ```
 
-1. Install JupyterLab in the virtual environment:
+1. Install the workshop's dependencies, JupyterLab included, in the virtual environment:
 
     ```shell
-    python3 -m pip install --require-virtualenv jupyterlab ipywidgets
+    python3 -m pip install --require-virtualenv -e .
     ```
 
-    Each notebook installs its own dependencies in its first cell. For more information, see the [Jupyter installation instructions](https://jupyter.org/install).
+    For more information, see the [Jupyter installation instructions](https://jupyter.org/install).
 
 1. Start JupyterLab (in the active virtual environment) and open the `notebooks` folder:
 
