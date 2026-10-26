@@ -34,7 +34,7 @@ It is recommended that you have:
 
 - Knowledge of [Git](https://git-scm.com/) and [Python](https://www.python.org/)
 - Git
-- Python 3.11, 3.12, or 3.13
+- Python 3.12 or 3.13
 
 If not, use [Google Colab](https://colab.research.google.com) instead.
 
@@ -97,61 +97,50 @@ uv python update-shell
 
 /// tab | Your own computer
 
-/// note | Use a virtual environment
-Before installing dependencies and to avoid conflicts in your environment, it is advisable to use a [virtual environment (venv)](https://docs.python.org/3/library/venv.html).
-///
-
 From the `granite-agent-workshop` folder you cloned above:
 
-1. Create a virtual environment:
+/// tab | uv (recommended)
 
-    /// tab | uv
+1. Create the virtual environment and install the workshop's locked dependencies, JupyterLab included:
 
     ```shell
-    uv venv --clear --seed --python 3.13 venv
+    uv sync
     ```
 
-    ///
+    This creates a `.venv` folder from `pyproject.toml` and `uv.lock`, so you get the same package versions as the lab workstation.
 
-    /// tab | venv
+1. Start JupyterLab and open the `notebooks` folder:
+
+    ```shell
+    uv run jupyter lab
+    ```
+
+///
+
+/// tab | venv
+
+1. Create a [virtual environment](https://docs.python.org/3/library/venv.html) and activate it:
 
     ```shell
     python3 -m venv --upgrade-deps --clear venv
-    ```
-
-    ///
-
-1. Activate the virtual environment by running:
-
-    ```shell
     source venv/bin/activate
     ```
 
 1. Install JupyterLab in the virtual environment:
 
-    /// tab | uv
-
-    ```shell
-    uv pip install jupyterlab ipywidgets
-    ```
-
-    ///
-
-    /// tab | venv
-
     ```shell
     python3 -m pip install --require-virtualenv jupyterlab ipywidgets
     ```
 
-    ///
-
-    For more information, see the [Jupyter installation instructions](https://jupyter.org/install).
+    Each notebook installs its own dependencies in its first cell. For more information, see the [Jupyter installation instructions](https://jupyter.org/install).
 
 1. Start JupyterLab (in the active virtual environment) and open the `notebooks` folder:
 
     ```shell
     jupyter lab
     ```
+
+///
 
 ///
 
